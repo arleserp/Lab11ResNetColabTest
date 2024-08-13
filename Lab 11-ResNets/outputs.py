@@ -28,7 +28,7 @@ np.random.seed(1)
 #                                  [1.8378723e+00, 0.0000000e+00, 0.0000000e+00, 1.5683722e-01, 0.0000000e+00, 2.3509054e+00]]]]
 
 
-ResNet50_summary =[['InputLayer', [(None, 64, 64, 3)], 0],
+ResNet50_summary =[['InputLayer', (None, 64, 64, 3), 0],
 ['ZeroPadding2D', (None, 70, 70, 3), 0, ((3, 3), (3, 3))],
 ['Conv2D', (None, 32, 32, 64), 9472, 'valid', 'linear', 'GlorotUniform'],
 ['BatchNormalization', (None, 32, 32, 64), 256],
