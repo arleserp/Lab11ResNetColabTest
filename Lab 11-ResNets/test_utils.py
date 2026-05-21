@@ -12,13 +12,16 @@ from tensorflow.keras.layers import Dense
 
 # Compare the two inputs
 def comparator(learner, instructor):
+
     if len(learner) != len(instructor):
         raise AssertionError(
             f'Models does not have the same number of layers {len(learner)} != {len(instructor)}'
         )
 
     for a, b in zip(learner, instructor):
+
         if tuple(a) != tuple(b):
+
             print(
                 colored("Test failed", attrs=['bold']),
                 "\n Expected value \n\n",
@@ -26,6 +29,7 @@ def comparator(learner, instructor):
                 "\n\n does not match the input value: \n\n",
                 colored(f"{a}", "red")
             )
+
             raise AssertionError("Error in test")
 
     print(colored("All tests passed!", "green"))
@@ -46,18 +50,9 @@ def summary(model):
 
         layer_name = layer.__class__.__name__
 
-        # Manejo compatible con TensorFlow moderno
+        # Compatibilidad TensorFlow moderno
         if hasattr(layer, 'output') and hasattr(layer.output, 'shape'):
-
-            # TensorShape -> tuple
-            shape = tuple(layer.output.shape)
-
-            # Compatibilidad con notebooks antiguos
-            if layer_name == "InputLayer":
-                output_shape = [shape]
-            else:
-                output_shape = shape
-
+            output_shape = tuple(layer.output.shape)
         else:
             output_shape = 'N/A'
 
